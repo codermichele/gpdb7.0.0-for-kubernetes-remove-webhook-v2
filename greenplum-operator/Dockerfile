@@ -4,6 +4,7 @@ FROM golang:1.19 as build-in-docker
 COPY greenplum-operator/ /greenplum-for-kubernetes/greenplum-operator/
 COPY pkg/ /greenplum-for-kubernetes/pkg/
 COPY go.mod go.sum /greenplum-for-kubernetes/
+ENV TZ=Asia/Shanghai LANG=en_US.UTF-8
 
 WORKDIR /greenplum-for-kubernetes/greenplum-operator
 RUN --mount=type=cache,target=/root/.cache/go-build \
@@ -24,9 +25,9 @@ RUN set -x && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG VERSION=dev
-ARG DATE=unknown
-ARG LICENSE="https://network.pivotal.io/legal_documents/vmware_eula"
-ARG GREENPLUM_VERSION=unknown
+ARG DATE="4 Nov 2023"
+ARG LICENSE="https://www.apache.org/licenses/LICENSE-2.0"
+ARG GREENPLUM_VERSION=7.0.0
 
 ENV GREENPLUM_VERSION=${GREENPLUM_VERSION}
 

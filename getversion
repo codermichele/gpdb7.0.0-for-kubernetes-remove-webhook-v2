@@ -4,7 +4,7 @@
 # we could have been called from.
 pushd $(dirname "$0") > /dev/null
 
-VERSION="UNKNOWN"
+VERSION="7.0.0"
 BUILDNUMBER=dev
 
 # Call git describe, and convert it to a semi-semantic version, like

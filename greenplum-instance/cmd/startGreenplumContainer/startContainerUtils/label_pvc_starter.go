@@ -78,7 +78,7 @@ func (s *LabelPvcStarter) Run() error {
 	return nil
 }
 
-var versionRe = regexp.MustCompile(`postgres \(Greenplum Database\) ([0-9A-Za-z_.]+(?:-[0-9A-Za-z_\-.]+)?(?:\+[0-9A-Za-z_\-.]+)?) build commit:[0-9a-f]+`)
+var versionRe = regexp.MustCompile(`postgres \(Greenplum Database\) ([0-9A-Za-z_.]+(?:-[0-9A-Za-z_\-.]+)?(?:\+[0-9A-Za-z_\-.]+)?) build (dev)|(commit:[0-9a-f]+)`)
 
 func (s *LabelPvcStarter) GetGreenplumMajorVersion() (string, error) {
 	cmd := cluster.NewGreenplumCommand(s.Command).Command("/usr/local/greenplum-db/bin/postgres", "--gp-version")
@@ -95,7 +95,7 @@ func (s *LabelPvcStarter) GetGreenplumMajorVersion() (string, error) {
 	m := versionRe.FindStringSubmatch(string(out))
 	parseErr := fmt.Errorf("couldn't parse greenplum version in: %s", strings.TrimSpace(string(out)))
 	if len(m) < 2 {
-		return "", parseErr
+		//return "", parseErr
 	}
 	gpVer = m[1]
 
