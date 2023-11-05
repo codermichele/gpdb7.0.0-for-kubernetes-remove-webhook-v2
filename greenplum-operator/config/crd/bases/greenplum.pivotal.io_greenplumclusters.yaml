@@ -44,7 +44,7 @@ spec:
             description: GreenplumClusterSpec defines the desired state of GreenplumCluster
             properties:
               masterAndStandby:
-                properties
+                properties:
                   antiAffinity:
                     default: "no"
                     description: YES or NO, specify whether or not to deploy with anti-affinity
